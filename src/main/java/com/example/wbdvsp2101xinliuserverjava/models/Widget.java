@@ -1,8 +1,18 @@
 package com.example.wbdvsp2101xinliuserverjava.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="widgets")
 public class Widget {
-  private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  private String name;
   private String type;
   private Integer widgetOrder;
   private String text;
@@ -15,12 +25,13 @@ public class Widget {
   private String style;
   private String value;
   private String topicId;
+  private Boolean ordered;
 
-  public Widget(String name, Long id, String type, Integer widgetOrder, String text,
-      String src, String url, Integer size, Integer width, Integer height,
-      String cssClass, String style, String value, String topicId) {
-    this.name = name;
+  public Widget(Long id, String name, String type, Integer widgetOrder, String text,
+      String src, String url, Integer size, Integer width, Integer height, String cssClass,
+      String style, String value, String topicId, Boolean ordered) {
     this.id = id;
+    this.name = name;
     this.type = type;
     this.widgetOrder = widgetOrder;
     this.text = text;
@@ -33,6 +44,7 @@ public class Widget {
     this.style = style;
     this.value = value;
     this.topicId = topicId;
+    this.ordered = ordered;
   }
 
   public Widget() {
@@ -148,5 +160,13 @@ public class Widget {
 
   public void setTopicId(String topicId) {
     this.topicId = topicId;
+  }
+
+  public Boolean getOrdered() {
+    return ordered;
+  }
+
+  public void setOrdered(Boolean ordered) {
+    this.ordered = ordered;
   }
 }
